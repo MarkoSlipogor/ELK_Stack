@@ -21,4 +21,4 @@ Server:
 - Logstash
 - Kibana
 
-![Alt text](MarkoSlipogor/ELK_Stack/ELK_Stack.jpg?raw=true "ELK_Stack")
+!(MarkoSlipogor/ELK_Stack/ELK_Stack.jpg?raw=true)
