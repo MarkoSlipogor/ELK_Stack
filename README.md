@@ -21,4 +21,7 @@ Server:
 - Logstash
 - Kibana
 
-!(MarkoSlipogor/ELK_Stack/ELK_Stack.jpg?raw=true)
+
+
+
+![ScreenShot](https://raw.githubusercontent.com/MarkoSlipogor/ELK_Stack/master/ELK_Stack.jpg)
