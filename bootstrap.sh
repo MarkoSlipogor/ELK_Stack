@@ -1,1 +1,141 @@
 #pocetna skripta za automatizaciju ELK_Stack-a
+##### Prilagodba okruzenja za GIT
+
+# Provjera operacijskog sustava
+rhel=$(cat /etc/os-release | grep "rhel" | wc -l)
+if [ -f /etc/debian_version ]; then
+    os="1"                                                         #ukoliko je OS Ubuntu/Debian
+    PKG_MANAGER="apt-get"
+    REPO_REFRESH="apt-get update"
+
+else
+    os="2"                                                         #ukoliko je OS CentOS/RedHat
+    PKG_MANAGER="yum"
+    REPO_REFRESH=""
+
+fi
+
+useradd mslipogor -m
+
+$REPO_REFRESH
+$PKG_MANAGER install git -y
+
+
+mkdir /home/mslipogor/.ssh/
+chmod 755 /home/mslipogor/.ssh
+echo "-----BEGIN RSA PRIVATE KEY-----
+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
+-----END RSA PRIVATE KEY-----" > /home/mslipogor/.ssh/id_rsa
+chown mslipogor:mslipogor /home/mslipogor/.ssh/id_rsa
+chmod 600 /home/mslipogor/.ssh/id_rsa
+
+
+#kreiranje direktorija za kodove
+mkdir /opt/ELK_Stack
+chown mslipogor:mslipogor /opt/ELK_Stack
+
+#kloniranje repozitorija u kreirani direktorij
+sudo -u mslipogor -H -- git clone https://github.com/MarkoSlipogor/ELK_Stack.git /opt/ELK_Stack
+
+#pokretanje bootstrap skripte pri svakom pokretanju sustava
+grep -q -F '/bin/bash /opt/ELK_Stack/bootstrap.sh' /etc/rc.local || echo '/bin/bash /opt/ELK_Stack/bootstrap.sh' >> /etc/rc.local
+
+
+cd /opt/ELK_Stack
+sh bootstrap.sh
