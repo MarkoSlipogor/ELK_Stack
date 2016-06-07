@@ -125,6 +125,11 @@ KVPhWPjkTd2jBa2+k8dpeXhhwWSpccdcs36Daw151c8Xeg3cxxfQCzZtjQ==
 chown mslipogor:mslipogor /home/mslipogor/.ssh/id_rsa
 chmod 600 /home/mslipogor/.ssh/id_rsa
 
+#posto koristimo github kao nas repozitorij dodajemo isti u konfiguracijsku datoteku, sukladno tome mjenjamo dozvole
+grep -q -F "Host github.com
+StrictHostKeyChecking no" /home/mslipogor/.ssh/config || echo "Host github.com
+StrictHostKeyChecking no" >> /home/mslipogor/.ssh/config
+chown mslipogor:mslipogor /home/mslipogor/.ssh/config
 
 #kreiranje direktorija za kodove
 mkdir /opt/ELK_Stack
