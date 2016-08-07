@@ -1,1 +1,0 @@
-#instalacija osnovnih komponenti
