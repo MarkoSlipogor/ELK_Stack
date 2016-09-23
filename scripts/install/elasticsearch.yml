@@ -1,1 +1,29 @@
-#konfiguracija elasticsearcha
+network.host: 0.0.0.0
+node.name: server7105
+cluster.name: main_logging
+discovery.zen.ping.multicast.enabled: false
+discovery.zen.ping.unicast.hosts: ["144.168.43.2", "144.168.43.6", "144.168.43.10", "144.168.43.14", "144.168.43.18", "144.168.43.22"]
+discovery.zen.minimum_master_nodes: 1
+bootstrap.mlockall: true
+action.disable_delete_all_indices: true
+discovery.zen.ping.timeout: 30s
+index.store.type: niofs
+indices.store.throttle.max_bytes_per_sec: "1gb"
+index.merge.scheduler.max_thread_count: 1
+index.translog.flush_threshold_size: "1gb"
+index.refresh_interval: 5m
+indices.memory.index_buffer_size: 50%
+index.translog.flush_threshold_ops: 50000
+index.number_of_shards: 3
+
+# Search thread pool
+threadpool.search.type: fixed
+threadpool.search.size: 30
+threadpool.search.queue_size: 2000
+
+# Index thread pool
+threadpool.index.type: fixed
+threadpool.index.size: 60
+threadpool.index.queue_size: 200
+
+index.store.throttle.type: none

@@ -1,1 +1,18 @@
-#konfiguracija topbeata
+input:
+  period: 10
+  procs: [".*"]
+  stats:
+    system: true
+    process: true
+    filesystem: true
+    cpu_per_core: false
+output:
+  logstash:
+    hosts: ["beats-prod.grindr.com:5044"]
+    loadbalance: true
+shipper:
+  tags: ["topbeat"]
+logging:
+  level: debug
+  to_files: false
+  to_syslog: true

@@ -1,1 +1,53 @@
-#konfiguracija packetbeata
+interfaces:
+ device: any
+protocols:
+ dns:
+  ports: [53]
+  include_autHoirties: true
+  include_additionals: true
+ http:
+  ports: [80, 8080, 8000, 5000, 8002]
+  hide_keywords: ["pass", "password", "passwd"]
+  redact_authorization: true
+ mysql:
+  ports: [3306]
+ redis:
+  ports: [6379]
+ pgsql:
+  ports: [5432]
+ ssh:
+  ports: [22]
+ mongodb:
+  ports: [27017]
+ git:
+  ports: [9418]
+ nginx:
+  ports: [80, 8080]
+ procs:
+  enabled: true
+  monitored:
+  - process: mysqld
+    cmdline_grep: mysqld
+
+  - process: pgsql
+    cmdline_grep: postgres
+
+  - process: nginx
+    cmdline_grep: nginx
+
+  - process: redis
+    cmdline_grep: redis
+
+  - process: mongod
+    cmdline_grep: mongod
+output:
+ logstash:
+   hosts: ["beats-prod.grindr.com:5046"]
+   loadbalance: true
+shipper:
+ ignore_outgoing: true
+ tags: ["packetbeat"]
+logging:
+ level: debug
+ to_files: false
+ to_syslog: true
