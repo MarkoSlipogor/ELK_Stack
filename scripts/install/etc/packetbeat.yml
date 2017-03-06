@@ -46,7 +46,7 @@ output:
    loadbalance: true
 shipper:
  ignore_outgoing: true
- tags: ["packetbeat"]
+ tags: ["veleri", "packetbeat-prod", CLUSTERRR]
 logging:
  level: debug
  to_files: false

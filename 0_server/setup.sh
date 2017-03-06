@@ -32,7 +32,7 @@ if [ -f /etc/debian_version ]; then
        chkconfig --add logstash
        chkconfig logstash on
 
-       
+
        #instalacija Kibane
        wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
        echo "deb http://packages.elastic.co/kibana/4.5/debian stable main" | sudo tee -a /etc/apt/sources.list
@@ -48,7 +48,7 @@ elif [ -f /etc/redhat-release ] || [ $rhel > 0 ]; then
        tar xzf jdk-8u66-linux-x64.tar.gz
        cd /opt/jdk1.8.0_66/
        alternatives --install /usr/bin/java java /opt/jdk1.8.0_66/bin/java 2
-       
+
        #instalacija Elasticsearcha
        rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch
        echo "[elasticsearch-2.x]
@@ -98,10 +98,7 @@ fi
 ## elasticsearch ciscenje logova
 rm -rf /var/log/elasticsearch/*
 
-#dodati kopiranje svih konfiguracija za pojedini program
-#.
-#.
-#.
-#.
-#.
-#instalirat predefinirane ploce za kibanu iz repota
+#kopiranje svih konfiguracija za pojedini program
+cp /opt/ELK_Stack/scripts/install/logstash.conf /etc/logstash/conf.d/logstash.conf
+cp /opt/ELK_Stack/scripts/install/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
+cp /opt/ELK_Stack/scripts/install/kibana.yml /etc/init.d/kibana

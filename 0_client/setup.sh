@@ -47,7 +47,6 @@ gpgcheck=1" > /etc/yum.repos.d/beats.repo
 fi
 
 #kopiranje konfiguracija te njihovo postavljanje
-cp /opt/ELK_Stack/scripts/install/logstash.conf /etc/logstash/conf.d/logstash.conf
-cp /opt/ELK_Stack/scripts/install/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
-cp /opt/ELK_Stack/scripts/install/kibana.yml /etc/kibana/kibana.yml
-
+cp /opt/ELK_Stack/scripts/install/etc/filebeat.yml /etc/filebeat/filebeat.yml
+cp /opt/ELK_Stack/scripts/install/etc/packetbeat.yml /etc/packetbeat/packetbeat.yml
+cp /opt/ELK_Stack/scripts/install/etc/topbeat.yml /etc/topbeat/topbeat.yml

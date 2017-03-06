@@ -5,13 +5,13 @@ input:
     system: true
     process: true
     filesystem: true
-    cpu_per_core: false
+    cpu_per_core: true
 output:
   logstash:
     hosts: ["beats-prod.grindr.com:5044"]
     loadbalance: true
 shipper:
-  tags: ["topbeat"]
+  tags: ["veleri", "topbeat-prod", CLUSTERRR]
 logging:
   level: debug
   to_files: false

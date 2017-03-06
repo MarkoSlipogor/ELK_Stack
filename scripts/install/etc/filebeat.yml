@@ -4,42 +4,66 @@ filebeat:
       paths:
         - /var/log/messages
         - /var/log/boot.log
+        - /var/log/tomcat8/catalina.out
         - /var/log/cloud-init.log
         - /var/log/cloud-init-output.log
-    -
-      paths:
+        - /var/log/httpd/error_log
+        - /var/log/kern.log
+        - /var/log/php5-fpm.log
+        - /var/log/checknfs
+        - /var/log/auth.log
+        - /var/log/dmesg
+        - /var/log/dpkg.log
+        - /var/log/nginx/error.log
+        - /var/log/cron
+        - /var/log/secure
+        - /var/log/datadog/collector.log
+        - /var/log/datadog/dogstatsd.log
+        - /var/log/datadog/forwarder.log
+        - /var/log/datadog/jmxfetch.log
+        - /var/log/datadog/supervisord.log
+        - /var/log/instance
+        - /var/log/installer.log
+        - /var/log/newrelic-plugin-agent.errors
+        - /var/log/newrelic/newrelic-plugin-agent.log
+        - /var/log/newrelic/newrelic-daemon.log
+        - /var/log/newrelic/nrsysmond.log
+        - /var/log/newrelic/php_agent.log
+        - /var/log/td-agent.log
+        - /etc/newrelic/logs/newrelic_agent.log
         - /var/log/dracut.log
         - /var/log/yum.log
-    -
-      paths:
-        - "/var/log/apache/*"
-        - "/var/log/audit/*"
-    -
-      paths:
-        - "/var/log/newrelic/*"
-        - "/var/log/datadog/*"
+        - /home/mongooseim/mongooseim/log/*
+        - /var/app/support/logs/passenger.log
+        - /var/app/support/logs/production.log
+        - /var/app/support/logs/staging.log
+        - /var/app/current/log/*
+        - /var/log/nginx/grindr.error.log
 
       input_type: log
       document_type: log
       ignore_older: 1h
-      scan_frequency: 15s
+      scan_frequency: 10s
       harvester_buffer_size: 16384
       tail_files: false
-      backoff: 1s
+      backoff: 5s
       max_backoff: 10s
       backoff_factor: 2
       partial_line_waiting: 5s
       force_close_files: false
-      spool_size: 1024
+      spool_size: 2048
       idle_timeout: 5s
       registry_file: /var/lib/filebeat/registry
 output:
   logstash:
     hosts: ["beats-prod.grindr.com:5045"]
     loadbalance: true
+    #certificate_authorities: ["/etc/ssl/filebeat/logging-ca.crt"]
+    #certificate: "/etc/ssl/filebeat/filebeat.crt"
+    #certificate_key: "/etc/ssl/filebeat/filebeat.key"
 shipper:
-  tags: ["filebeat"]
+  tags: ["veleri", "filebeat-prod", CLUSTERRR]
 logging:
-  level: debug
+  level: warning
   to_files: false
   to_syslog: true
