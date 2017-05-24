@@ -2,7 +2,7 @@
 #########################
 ## ELK_Stack Bootstrap ##
 #########################
-#pocetak instalacije programa
+#pocetak instalacije programa####
 
 ## Update repozitorija ##
 echo "git pull debug" >> /var/log/bootstrap
