@@ -77,24 +77,24 @@ grep -q -F 'root soft nofile 1048576' /etc/security/limits.conf || echo 'root so
 grep -q -F 'root hard nofile 1048576' /etc/security/limits.conf || echo 'root hard nofile 1048576' >> /etc/security/limits.conf
 
 #instalacija alata za monitoriranje sustava
-echo "logging debug" >> /var/log/bootstrap
-sh /opt/ELK_Stack/scripts/install/logging.sh
+#echo "logging debug" >> /var/log/bootstrap
+#sh /opt/ELK_Stack/scripts/install/logging.sh
 
 #instalacija odabranog clustera
-if [ -f /etc/ELK_Stack.env ]; then
-    source /etc/ELK_Stack.env
-fi
+#if [ -f /etc/ELK_Stack.env ]; then
+#    source /etc/ELK_Stack.env
+#fi
 
-if [ -z "$cluster" ]; then
-    echo "Cluster nije definiran u tagovima ili u varijabli!"
-    exit
-fi
-echo "cluster setup debug" >> /var/log/bootstrap
+#if [ -z "$cluster" ]; then
+#    echo "Cluster nije definiran u tagovima ili u varijabli!"
+#    exit
+#fi
+#echo "cluster setup debug" >> /var/log/bootstrap
 #write the vuirrent vars then run setup script
-( set -o posix ; set ) > /var/run/ELK_Stack-bootstrap
+#( set -o posix ; set ) > /var/run/ELK_Stack-bootstrap
 
-echo "cluster script" > /var/log/bootstrap
-cd /opt/ELK_Stack/$cluster/
+#echo "cluster script" > /var/log/bootstrap
+cd /opt/ELK_Stack/0_client/
 bash setup.sh
 
 exit 0
